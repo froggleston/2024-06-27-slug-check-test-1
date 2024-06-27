@@ -55,7 +55,8 @@ create a workshop website.
     e.g., `2016-12-01-oomza`,
     where `YYYY-MM-DD` is the start date of the workshop.
     If your workshop is held online, then the respository name should have `-online` in the end.
-    e.g., `2016-12-01-oomza-online`
+    e.g., `2016-12-01-oomza-online`. Your website build will fail if the name of your
+    repository does not match the valid slug format!
 
 5.  Make sure the repository is public, leave "Include all branches" unchecked, and click
 on "Create repository from template".
