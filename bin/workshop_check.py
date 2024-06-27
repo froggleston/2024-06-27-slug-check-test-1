@@ -404,7 +404,7 @@ def check_config(reporter, filename):
 def check_slug(reporter, filename, repo_dir):
     config = load_yaml(filename)
 
-    repo_name = os.path.basename(repo_dir)
+    repo_name = os.path.basename(os.path.realpath(repo_dir))
 
     carpentry = config.get('carpentry', None)
     kind = config.get('kind', None)
