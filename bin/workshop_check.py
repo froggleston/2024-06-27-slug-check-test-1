@@ -417,12 +417,15 @@ def check_slug(reporter, filename, repo_dir):
     fail_msg = 'Workshop website slug {0} does not match the required `{1}`'
 
     if carpentry in ('swc', 'dc', 'lc', 'cp'):
-        reporter.check(
-            bool(re.match(SLUG_PATTERN, repo_name)),
-            None,
-            fail_msg,
-            repo_name, slugfmt
-        )
+        if not bool(re.match(SLUG_PATTERN, repo_name)):
+            print(fail_msg.format(repo_name, slugfmt))
+            sys.exit(1)
+        # reporter.check(
+        #     bool(re.match(SLUG_PATTERN, repo_name)),
+        #     None,
+        #     fail_msg,
+        #     repo_name, slugfmt
+        # )
 
 def main():
     '''Run as the main program.'''
