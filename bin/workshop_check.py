@@ -414,12 +414,14 @@ def check_slug(reporter, filename, repo_dir):
     else:
         slugfmt = "YYYY-MM-DD-site-format"
 
-    fail_msg = f'Workshop website slug {repo_name} does not match the required `{slugfmt}`'
+    fail_msg = 'Workshop website slug {0} does not match the required `{1}`'
 
     if carpentry in ('swc', 'dc', 'lc', 'cp'):
         reporter.check(
             bool(re.match(SLUG_PATTERN, repo_name)),
-            fail_msg
+            None,
+            fail_msg,
+            repo_name, slugfmt
         )
 
 def main():
