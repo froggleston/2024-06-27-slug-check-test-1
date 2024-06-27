@@ -401,7 +401,7 @@ def check_config(reporter, filename):
                    carpentry)
 
 
-def check_slug(reporter, repo_dir):
+def check_slug(reporter, filename, repo_dir):
     config = load_yaml(filename)
 
     repo_name = os.path.basename(repo_dir)
@@ -436,7 +436,7 @@ def main():
     reporter = Reporter()
     check_config(reporter, config_file)
 
-    check_slug(reporter, root_dir)
+    check_slug(reporter, config_file, root_dir)
 
     check_unwanted_files(root_dir, reporter)
     with open(index_file, encoding='utf-8') as reader:
