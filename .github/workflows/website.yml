@@ -98,6 +98,12 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
+      - name: Validate workshop website
+        # waiting for https://github.com/carpentries/styles/issues/551
+        # to be addressed
+        run: make workshop-check
+        if: always()
+
       - name: Commit and Push
         if: ${{ github.event_name == 'push' && steps.check-rmd.outputs.count != 0 && github.ref != 'refs/heads/gh-pages'}}
         run: |
