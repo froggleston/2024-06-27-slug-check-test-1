@@ -407,25 +407,27 @@ def check_slug(reporter, filename, repo_dir):
     repo_name = os.path.basename(os.path.realpath(repo_dir))
 
     carpentry = config.get('carpentry', None)
-    kind = config.get('kind', None)
-
-    if carpentry == "cp":
-        slugfmt = "YYYY-MM-DD-ttt-format"
-    else:
-        slugfmt = "YYYY-MM-DD-site-format"
-
-    fail_msg = 'Website repository name `{0}` does not match the required slug format: `{1}`'
 
     if carpentry in ('swc', 'dc', 'lc', 'cp'):
+        if carpentry == "cp":
+            slugfmt = "YYYY-MM-DD-ttt[-online]"
+        else:
+            slugfmt = "YYYY-MM-DD-site[-online]"
+
+        fail_msg = (
+            'Website repository name `{0}` does not match the required slug format: `{1}`. '
+            'Please rename your repository using the rename option in the "Settings" menu.'
+        )
+
         if not bool(re.match(SLUG_PATTERN, repo_name)):
             print(fail_msg.format(repo_name, slugfmt))
             sys.exit(1)
-        # reporter.check(
-        #     bool(re.match(SLUG_PATTERN, repo_name)),
-        #     None,
-        #     fail_msg,
-        #     repo_name, slugfmt
-        # )
+    # reporter.check(
+    #     bool(re.match(SLUG_PATTERN, repo_name)),
+    #     None,
+    #     fail_msg,
+    #     repo_name, slugfmt
+    # )
 
 def main():
     '''Run as the main program.'''
